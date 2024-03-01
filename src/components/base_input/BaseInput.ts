@@ -1,19 +1,7 @@
 import { h } from 'vue'
-interface Props {
-  modelValue: string
-  placeholder: string
-  class: string
-  label: string
-  name: string
-}
-const initializationOfProps: Props = {
-  modelValue: 'modelValue',
-  placeholder: 'placeholder',
-  class: 'class',
-  label: 'label',
-  name: 'name'
-}
-const initializationOfEmits: string[] = ['onUpdate']
+import { Props } from './types'
+import { initializationOfEmits, initializationOfProps } from './initialization'
+
 export default {
   props: [
     initializationOfProps.modelValue,
