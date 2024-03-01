@@ -1,11 +1,29 @@
 import { h } from 'vue'
-const initializationOfProps = ['modelValue', 'class', 'placeholder', 'label']
-const initializationOfEmits = ['onUpdate']
+interface Props {
+  modelValue: string
+  placeholder: string
+  class: string
+  label: string
+  name: string
+}
+const initializationOfProps: Props = {
+  modelValue: 'modelValue',
+  placeholder: 'placeholder',
+  class: 'class',
+  label: 'label',
+  name: 'name'
+}
+const initializationOfEmits: string[] = ['onUpdate']
 export default {
-  props: initializationOfProps,
+  props: [
+    initializationOfProps.modelValue,
+    initializationOfProps.placeholder,
+    initializationOfProps.class,
+    initializationOfProps.label
+  ],
   emits: initializationOfEmits,
-  setup(props, { emit }) {
-    const data = props.modelValue
+  setup(props: Props, { emit }) {
+    const data: string = props.modelValue
     return () => [
       h(
         'div',
@@ -24,9 +42,8 @@ export default {
             class: props.class ?? 'default-class',
             placeholder: props.placeholder ?? 'Enter your text',
             name: props.name ?? 'input-box',
-            ...inputPropertiesAndFunctionalities,
             value: data,
-            onKeypress: (e) => {
+            onKeypress: (e: KeyboardEvent): void => {
               emit('onUpdate', e)
             }
           })
@@ -34,8 +51,4 @@ export default {
       )
     ]
   }
-}
-
-const inputPropertiesAndFunctionalities = {
-  name: 'input-render'
 }
